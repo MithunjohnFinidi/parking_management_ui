@@ -37,10 +37,10 @@ import { PageNotFoundComponentComponent } from './components/app-holder/page-not
         //   component: HeroListComponent,
         //   data: { title: 'Heroes List' }
         // },
-        // { path: '',
-        //   redirectTo: '/dashboard',
-        //   pathMatch: 'full'
-        // },
+        { path: '',
+          redirectTo: '/dashboard',
+          pathMatch: 'full'
+        },
         { path: '**', component: PageNotFoundComponentComponent }
       ]
     )
