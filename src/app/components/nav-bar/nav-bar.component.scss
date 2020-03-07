@@ -18,10 +18,12 @@
             display: block;
             font-size: 17px;
             font-weight: 500;
-            padding: 10px 25px;
+            padding: 12px 25px;
             color: #72777a;
+            transition: all .3s ease;
             &:hover {
                 cursor: pointer;
+                background-color: #f3f3f3;
             }
             &:hover a{
                 color: #313435;
