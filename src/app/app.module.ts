@@ -11,6 +11,7 @@ import { LocationsComponent } from './components/app-holder/locations/locations.
 import { VehiclesComponent } from './components/app-holder/vehicles/vehicles.component';
 import { BookingsComponent } from './components/app-holder/bookings/bookings.component';
 import { PageNotFoundComponentComponent } from './components/app-holder/page-not-found-component/page-not-found-component.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PageNotFoundComponentComponent } from './components/app-holder/page-not
     VehiclesComponent,
     BookingsComponent,
     PageNotFoundComponentComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

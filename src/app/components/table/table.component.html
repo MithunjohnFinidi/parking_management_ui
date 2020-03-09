@@ -1,0 +1,18 @@
+
+<table>
+    <thead>
+        <tr>
+            <th *ngFor="let item of tableColumns"> {{item.styleClass ? '' : item.header}} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of tableData">
+            <td *ngFor="let configItem of tableColumns" > 
+                <div *ngIf="configItem.styleClass">
+                    <button *ngFor="let button of configItem.buttons" [ngClass]="button.customClass">{{button.label}}</button>
+                </div> 
+                <span *ngIf="!configItem.styleClass">{{dataItem[configItem.field]}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
