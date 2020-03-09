@@ -1,11 +1,12 @@
 .app_container {
-    height: calc(100% - 110px);
+    min-height: calc(100% - 110px);
+    background-color: #f9fafb;
 }
 
 .app_content {
     margin-left: 220px;
     // width: 100%;
-    background-color: #f9fafb;
+    // background-color: #f9fafb;
     height: 100%;
     padding: 25px;
 }
