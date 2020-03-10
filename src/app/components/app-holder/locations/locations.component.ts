@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableComponent } from '../../table/table.component';
+import { LocationsService } from './locations.service';
 
 @Component({
   selector: 'app-locations',
@@ -9,11 +10,18 @@ import { TableComponent } from '../../table/table.component';
 export class LocationsComponent implements OnInit {
   testTableData: Array<object>;
   testTableColumns: Array<object>;
+  locationsData: Array<object>;
+  isLocationDataReady: boolean;
 
-  constructor() { }
+  constructor(private locationsService: LocationsService) { 
+    this.isLocationDataReady = false;
+  }
 
   ngOnInit() {
-
+    this.locationsService.getData('http://localhost:3000/locations').then( (response) => {
+      this.locationsData = response;
+      this.isLocationDataReady = true;
+    });
     this.testTableData = [
       {
         name: "mithun",
@@ -66,30 +74,41 @@ export class LocationsComponent implements OnInit {
     ]
 
     this.testTableColumns = [
-      
       {
-        header: "Name",
-        field: "name"
+        header: "Location",
+        field: "locName"
+      },
+      // {
+      //   header: "Description",
+      //   field: "locDesc"
+      // },
+      {
+        header: "Total slots",
+        field: "numOfSlots"
       },
       {
-        header: "Age",
-        field: "age"
+        header: "Disabled slots",
+        field: "numOfDisabledSlots"
       },
       {
-        header: "Place",
-        field: "place"
+        header: "Reserved slots",
+        field: "numOfReserved"
       },
       {
-        header: "College",
-        field: "college"
+        header: "Speed limit",
+        field: "speedLimit"
       },
       {
-        header: "Car",
-        field: "car"
+        header: "Status",
+        field: "locStatus"
       },
       {
-        header: "Test",
-        field: "test"
+        header: "Avaliable slots",
+        field: "availableSlots"
+      },
+      {
+        header: "Parking Charge",
+        field: "parkingCharge"
       },
       {
         styleClass: 'button',

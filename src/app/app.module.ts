@@ -13,6 +13,10 @@ import { BookingsComponent } from './components/app-holder/bookings/bookings.com
 import { PageNotFoundComponentComponent } from './components/app-holder/page-not-found-component/page-not-found-component.component';
 import { TableComponent } from './components/table/table.component';
 
+import { ApiService } from './services/api.service';
+import { HttpService } from './services/http.service';
+import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,7 @@ import { TableComponent } from './components/table/table.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', component: DashboardComponent },
@@ -47,7 +52,7 @@ import { TableComponent } from './components/table/table.component';
       ]
     )
   ],
-  providers: [],
+  providers: [ApiService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
