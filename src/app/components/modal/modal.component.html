@@ -1,0 +1,23 @@
+
+<!-- Modal -->
+<div class="modal fade {{modalConfig.modalClass}}" id="{{modalConfig.modalId}}" data-backdrop="static" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" *ngIf="!modalConfig.noHeader">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <ng-content select=".modal-header"></ng-content>
+            </div>
+            <div class="modal-body clearfix">
+                <ng-content select=".modal-body-content"></ng-content>
+                <ng-content select=".DependentServerMsg-modalBody"></ng-content>
+                <ng-content select=".serverMsg-modalBody"></ng-content>
+            </div>
+            <div class="modal-footer">
+                <ng-content select=".modal-footer-content"></ng-content>
+                <!-- <button type="button" (click)="cancelBtnClicked()" *ngIf="!modalConfig.hideRejectBtn" class="btn cancel-btn pull-right" data-dismiss="modal">{{modalConfig.rejectText || 'Cancel'}}</button> -->
+            </div>
+        </div>
+        <!-- Modal content-->
+    </div>
+</div>

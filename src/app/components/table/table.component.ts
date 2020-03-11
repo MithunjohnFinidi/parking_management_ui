@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -8,11 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableComponent implements OnInit {
   @Input() tableData: Array<object>;
   @Input() tableColumns: Array<object>;
+  @Output() btnClicked: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
     
+  }
+
+  buttonClicked(btnConfig, clickedItem) {
+    debugger
+    this.btnClicked.emit( {
+      btnConfig,
+      clickedItem
+    })
   }
 
 }

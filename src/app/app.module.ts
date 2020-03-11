@@ -16,6 +16,7 @@ import { TableComponent } from './components/table/table.component';
 import { ApiService } from './services/api.service';
 import { HttpService } from './services/http.service';
 import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
     BookingsComponent,
     PageNotFoundComponentComponent,
     TableComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

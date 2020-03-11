@@ -8,8 +8,18 @@ export class LocationsService {
 
   constructor(private apiService: ApiService) { }
 
-  getData(url):Promise<any> {
-		return new Promise(resolve => {
+    getData(url):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.get(url).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    }
+
+    getALocation(url):Promise<any> {
+        return new Promise(resolve => {
             this.apiService.get(url).then(response => {
                 resolve(response);
             }).catch(error=>{

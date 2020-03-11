@@ -12,9 +12,16 @@ export class LocationsComponent implements OnInit {
   testTableColumns: Array<object>;
   locationsData: Array<object>;
   isLocationDataReady: boolean;
+  modalOptions: object;
+  showNavigationConfirmBox: Boolean;
 
   constructor(private locationsService: LocationsService) { 
     this.isLocationDataReady = false;
+    this.modalOptions = {
+        modalId: 'confirmation-modal',
+        modalClass: 'confirmation-modal',
+        hideRejectBtn: true
+    }
   }
 
   ngOnInit() {
@@ -128,6 +135,19 @@ export class LocationsComponent implements OnInit {
         ]
       }
     ]
+  }
+
+  tableBtnClicked(tableItem) {
+    this.showNavigationConfirmBox = true;
+    if(tableItem.btnConfig.action === 'edit') {
+      this.locationsService.getALocation('http://localhost:3000/locations/' + tableItem.clickedItem.locID ).then( (response) => {
+        debugger
+      })
+    } else if (tableItem.btnConfig.action === 'delete') {
+      
+    }
+    
+    
   }
 
 }
