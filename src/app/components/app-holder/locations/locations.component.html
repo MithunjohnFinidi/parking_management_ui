@@ -1,5 +1,5 @@
 
-<button class="addBtn">Add Location</button>
+<button class="addBtn" (click)="openAddLOcationModal()">Add Location</button>
 <app-table *ngIf="isLocationDataReady" [tableData]="locationsData" [tableColumns]="testTableColumns" (btnClicked)="tableBtnClicked($event)"></app-table>
 
 
@@ -13,5 +13,136 @@
     <ng-container class="modal-footer-content">
         <button class="saveBtn btn primary-btn pull-right" (click)="confirmAction()">Yes</button>
         <button class="btn cancel-btn pull-right" (click)="discardAction()">No</button>
+    </ng-container>
+</app-modal>
+
+<app-modal [modalConfig]="addLocationModalOptions" [toggleModalVisibility]="showAddLocationModal" >
+    <ng-container class="modal-header">
+       <h4>Add Location</h4>
+    </ng-container>
+    <ng-container class="modal-body-content">
+        <form [formGroup]="addLocationForm">  
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ">
+                            <div class="form-group">
+                                    <label>Location Name</label>
+                                    <input type="text" formControlName="locName" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.locName.errors }" />
+                                    <div *ngIf="addLocationFormSubmitted && f.locName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.locName.errors.required">Car Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" formControlName="locDesc" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.locDesc.errors }" />
+                                    <div *ngIf="addLocationFormSubmitted && f.locDesc.errors" class="invalid-feedback">
+                                        <div *ngIf="f.locDesc.errors.required">Company is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Number of slots</label>
+                                    <input type="number" formControlName="numOfSlots" minlength="4" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.numOfSlots.errors }" />
+                                    <div *ngIf="addLocationFormSubmitted && f.numOfSlots.errors" class="invalid-feedback">
+                                        <div *ngIf="f.numOfSlots.errors.required">Year Of Manufacture is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Disabled slots</label>
+                                    <input type="number" formControlName="numOfDisabledSlots" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.numOfDisabledSlots.errors }" />
+                                    <div *ngIf="addLocationFormSubmitted && f.numOfDisabledSlots.errors" class="invalid-feedback">
+                                        <div *ngIf="f.numOfDisabledSlots.errors.required">Color is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Reserved slots</label>
+                                    <input type="number" formControlName="numOfReserved" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.numOfReserved.errors }" />
+                                    <div *ngIf="addLocationFormSubmitted && f.numOfReserved.errors" class="invalid-feedback">
+                                        <div *ngIf="f.numOfReserved.errors.required">Type is required</div>
+                                    </div>
+                                </div>
+                                
+                    </div>
+                    <div class="col-md-6 ">
+                        
+                            <div class="form-group">
+                                <label>Speed Limit</label>
+                                <input type="text" formControlName="speedLimit" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.speedLimit.errors }" />
+                                <div *ngIf="addLocationFormSubmitted && f.speedLimit.errors" class="invalid-feedback">
+                                    <div *ngIf="f.speedLimit.errors.required">Price is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="text" formControlName="locStatus" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.locStatus.errors }" />
+                                <div *ngIf="addLocationFormSubmitted && f.locStatus.errors" class="invalid-feedback">
+                                    <div *ngIf="f.locStatus.errors.required">Doors is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Available slots</label>
+                                <input type="number" formControlName="availableSlots" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.availableSlots.errors }" />
+                                <div *ngIf="addLocationFormSubmitted && f.availableSlots.errors" class="invalid-feedback">
+                                    <div *ngIf="f.availableSlots.errors.required">Fuel Type is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Parking Charge</label>
+                                <input type="text" formControlName="parkingCharge" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.parkingCharge.errors }" />
+                                <div *ngIf="addLocationFormSubmitted && f.parkingCharge.errors" class="invalid-feedback">
+                                    <div *ngIf="f.parkingCharge.errors.required">Drive Terrain is required</div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Engine</label>
+                                <input type="text" formControlName="engine" class="form-control" [ngClass]="{ 'is-invalid': addLocationFormSubmitted && f.engine.errors }" />
+                                <div *ngIf="addLocationFormSubmitted && f.engine.errors" class="invalid-feedback">
+                                    <div *ngIf="f.engine.errors.required">Engine is required</div>
+                                </div>
+                            </div> -->
+        
+        
+        
+        
+                            <!-- <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group addNewCar">
+                                <button class="btn btn-primary add_new_car">Add</button>
+                            </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+    <ng-container class="modal-footer-content">
+        <button class="saveBtn btn btn-primary pull-right" (click)="confirmAddLocation()">Add Location</button>
+        <button class="btn cancel-btn pull-right" (click)="discardAddLocation()">Cancel</button>
+    </ng-container>
+</app-modal>
+
+
+<app-modal [modalConfig]="deleteLocationModalOptions" [toggleModalVisibility]="showDeleteModal" >
+    <ng-container class="modal-header">
+       <h4>Delete Location</h4>
+    </ng-container>
+    <ng-container class="modal-body-content">
+       Are you sure you want to Delete the location?
+    </ng-container>
+    <ng-container class="modal-footer-content">
+        <button class="saveBtn btn primary-btn pull-right" (click)="confirmDeleteLocation()">Yes</button>
+        <button class="btn cancel-btn pull-right" (click)="discardDeleteLocation()">No</button>
     </ng-container>
 </app-modal>

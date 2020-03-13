@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -35,6 +36,7 @@ import { ModalComponent } from './components/modal/modal.component';
   imports: [
     BrowserModule,
     HttpModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', component: DashboardComponent },
