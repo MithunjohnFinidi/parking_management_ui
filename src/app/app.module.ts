@@ -18,6 +18,7 @@ import { ApiService } from './services/api.service';
 import { HttpService } from './services/http.service';
 import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { ModalComponent } from './components/modal/modal.component';
+import { httpFactory } from './factory/http.factory';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,15 @@ import { ModalComponent } from './components/modal/modal.component';
       ]
     )
   ],
-  providers: [ApiService, HttpService],
+  providers: [
+    ApiService, 
+    HttpService,
+    {
+      provide: Http,
+      useFactory: httpFactory,
+      deps: [XHRBackend, RequestOptions]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

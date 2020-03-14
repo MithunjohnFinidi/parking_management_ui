@@ -47,7 +47,7 @@ export class LocationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.locationsService.getData('http://localhost:3000/locations').then( (response) => {
+    this.locationsService.getData('/locations').then( (response) => {
       this.locationsData = response;
       this.isLocationDataReady = true;
     });
@@ -159,19 +159,20 @@ export class LocationsComponent implements OnInit {
   }
 
   confirmAddLocation() {
+    debugger
     this.addLocationFormSubmitted = true;
 
     // stop here if form is invalid
     if (this.addLocationForm.invalid) {
         return;
     }
-    // this.carService.createCar(this.registerForm.value).then( () => {
-    //   this.toastMessage = "Successfully Added"
-    //       this.showToast = true;
-    //       setTimeout( () => {
-    //         this.showToast = false;
-    //       }, 3000)
-    // });
+    this.locationsService.addLOcation(this.addLocationForm.value).then( () => {
+      // this.toastMessage = "Successfully Added"
+      //     this.showToast = true;
+      //     setTimeout( () => {
+      //       this.showToast = false;
+      //     }, 3000)
+    });
   }
 
   updateFormValues(controlName: string, value) {

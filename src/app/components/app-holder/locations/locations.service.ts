@@ -27,4 +27,14 @@ export class LocationsService {
             });
         })
     }
+
+    addLOcation(locationObj):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.post('/locations/create-location', locationObj).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    }
 }
