@@ -127,7 +127,7 @@ export class LocationsComponent implements OnInit {
   tableBtnClicked(tableItem) {
     // this.showNavigationConfirmBox = true;
     if(tableItem.btnConfig.action === 'edit') {
-      this.locationsService.getALocation('http://localhost:3000/locations/' + tableItem.clickedItem.locID ).then( (response) => {
+      this.locationsService.getALocation('/locations/' + tableItem.clickedItem.locID ).then( (response) => {
         debugger
         this.updateFormValues('locName', response.locName);
         this.updateFormValues('locDesc', response.locDesc);
@@ -167,6 +167,7 @@ export class LocationsComponent implements OnInit {
         return;
     }
     this.locationsService.addLOcation(this.addLocationForm.value).then( () => {
+      this.showAddLocationModal = false;
       // this.toastMessage = "Successfully Added"
       //     this.showToast = true;
       //     setTimeout( () => {
