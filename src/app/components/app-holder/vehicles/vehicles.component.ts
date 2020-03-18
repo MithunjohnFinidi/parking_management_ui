@@ -8,105 +8,69 @@ import { VehicleService } from './vehicle.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  testTableData: Array<object>;
   testTableColumns: Array<object>;
   vehicleData: Array<object>;
   isVehicleDataReady: boolean;
-  modalOptions: object;
+  vehicleOutModalOptions: object;
   showNavigationConfirmBox: Boolean;
+  showVehicleOutModal: boolean;
+  currentVehicleOutData: object;
 
   constructor(private vehicleService: VehicleService) { 
     this.isVehicleDataReady = false;
-    this.modalOptions = {
-        modalId: 'confirmation-modal',
+    this.showVehicleOutModal = false;
+    this.currentVehicleOutData = {}
+    this.vehicleOutModalOptions = {
+        modalId: 'vehicle-out-modal',
         modalClass: 'confirmation-modal',
         hideRejectBtn: true
     }
   }
   ngOnInit() {
-    this.vehicleService.getData('http://localhost:3000/vehicles').then( (response) => {
-      this.vehicleData = response;
-      this.isVehicleDataReady = true;
+    this.vehicleService.getData('/vehicles').then( (response) => {
+      this.vehicleService.getData('/locations').then( (locationsArray) => {
+        this.vehicleData = response;
+        this.vehicleData.map( (item) => {
+            item['locDetails'] = locationsArray.find( (locationItem) => {
+              return locationItem.locID === item['locID']
+            })
+            item['vehicleInDate'] = this.displayDateFormat(item['vehicleIn']);
+            item['vehicleOutDate'] = this.displayDateFormat(item['vehicleOut']);
+            item['vehicleStatus'] = item['vehicleStatus'] === 1 ? 'In' : 'Out';
+            item['parkingCharge'] = '$' + item['parkingCharge'];
+        })
+        this.vehicleData.map( (item) => {
+          item['locName'] = locationsArray.find( (locationItem) => {
+            if(locationItem.locID === item['locID']) {
+              return locationItem
+            }
+          }).locName
+      })
+        debugger
+        this.isVehicleDataReady = true;
+      })
     });
-    this.testTableData = [
-      {
-        name: "mithun",
-        age: 25,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      },
-      {
-        name: "nitin",
-        age: 24,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      },
-      {
-        name: "mithun",
-        age: 25,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      },
-      {
-        name: "nitin",
-        age: 24,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      },
-      {
-        name: "mithun",
-        age: 25,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      },
-      {
-        name: "nitin",
-        age: 24,
-        place: "asd",
-        college: "asd",
-        car: "asd",
-        test: "asd"
-      }
-    ]
+
+    
+    
 
     this.testTableColumns = [
       {
         header: "Lisence Number",
         field: "licenseNo"
       },
-      // {
-      //   header: "Description",
-      //   field: "locDesc"
-      // },
       {
-        header: "Modal name",
-        field: "model"
+        header: "Location",
+        field: "locName"
       },
-      {
-        header: "Customer Name",
-        field: "ownerName"
-      },
-      {
-       header: "Color",
-       field: "color"
-      },
+      
       {
         header:"Coming data",
-        field:"vehicleIn"
+        field:"vehicleInDate"
       },
       {
       header:"Going date",
-      field:"vehicleOut"
+      field:"vehicleOutDate"
       },
      {
      header:"Vehicle Status",
@@ -121,19 +85,24 @@ export class VehiclesComponent implements OnInit {
         buttons: [
           {
             label: 'Edit',
-            icon: 'fas fa-pencil-alt',
+            icon: 'fas fa-edit',
             customClass: 'editBtn',
             action: 'edit'
           },
           {
             label: 'Delete',
-            icon: 'fas fa-pencil-alt',
+            icon: 'fas fa-trash',
             customClass: 'deleteBtn',
-            action: 'edit'
+            action: 'vehicleOut'
           }
         ]
       }
     ]
+  }
+
+  displayDateFormat(date) {
+    let tempDate = new Date(date);
+    return tempDate.toLocaleTimeString() + '\n'+ tempDate.toLocaleDateString();
   }
 
   tableBtnClicked(tableItem) {
@@ -142,11 +111,23 @@ export class VehiclesComponent implements OnInit {
       this.vehicleService.getVehicle('http://localhost:3000/vehicles/' + tableItem.clickedItem.locID ).then( (response) => {
         debugger
       })
-    } else if (tableItem.btnConfig.action === 'delete') {
+    } else if (tableItem.btnConfig.action === 'vehicleOut') {
       
+      let timeDiff = Math.ceil((new Date(tableItem.clickedItem.vehicleIn).getTime() - new Date().getTime())/(1000*60*60))  
+      this.currentVehicleOutData = {
+        'licenseNo': tableItem.clickedItem.licenseNo,
+        'locName': tableItem.clickedItem.locName,
+        'parking_time': timeDiff +'hours',
+        'parking_charge': timeDiff * tableItem.clickedItem.locDetails.parkingCharge
+      }
+      debugger
+      this.showVehicleOutModal = true;
     }
     
-    
+  }
+
+  cancelVehicleOutModal() {
+    this.showVehicleOutModal = false;
   }
 
 }

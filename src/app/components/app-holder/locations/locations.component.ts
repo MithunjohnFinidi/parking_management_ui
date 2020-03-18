@@ -108,14 +108,14 @@ export class LocationsComponent implements OnInit {
         styleClass: 'button',
         buttons: [
           {
-            label: 'Edit',
-            icon: 'fas fa-pencil-alt',
+            label: 'Edit', 
+            icon: 'fas fa-edit',
             customClass: 'editBtn',
             action: 'edit'
           },
           {
             label: 'Delete',
-            icon: 'fas fa-pencil-alt',
+            icon: 'fas fa-trash',
             customClass: 'deleteBtn',
             action: 'delete'
           }

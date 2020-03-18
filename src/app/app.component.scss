@@ -1,10 +1,11 @@
 .app_container {
-    min-height: calc(100% - 150px);
+    min-height: calc(100% - 116px);
     background-color: #f9fafb;
+    display: flex;
 }
 
 .app_content {
-    margin-left: 220px;
+    // margin-left: 220px;
     // width: 100%;
     // background-color: #f9fafb;
     height: 100%;

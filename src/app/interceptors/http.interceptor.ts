@@ -11,7 +11,6 @@ export class InterceptedHttp extends Http {
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        debugger
         if(url['url'].startsWith('http')) {
             return super.request(url);
         }
@@ -27,7 +26,6 @@ export class InterceptedHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        debugger
         if(url.startsWith('http')) {
             return super.get(url);
         }
@@ -39,7 +37,6 @@ export class InterceptedHttp extends Http {
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        debugger
         return super.put(url, body, this.getRequestOptionArgs(options));
     }
     patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {

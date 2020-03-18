@@ -9,7 +9,11 @@
         <tr *ngFor="let dataItem of tableData">
             <td *ngFor="let configItem of tableColumns" > 
                 <div *ngIf="configItem.styleClass">
-                    <button *ngFor="let button of configItem.buttons" [ngClass]="button.customClass" (click)="buttonClicked(button, dataItem)">{{button.label}}</button>
+                    <button *ngFor="let button of configItem.buttons" [ngClass]="button.customClass" (click)="buttonClicked(button, dataItem)">
+                        <i *ngIf="button.icon" [attr.title]="button.label" [attr.class]="button.icon"></i>
+                        <span *ngIf="!button.icon"> {{button.label}}</span>
+                       
+                    </button>
                 </div> 
                 <span *ngIf="!configItem.styleClass">{{dataItem[configItem.field]}}</span>
             </td>

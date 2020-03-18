@@ -3,15 +3,16 @@
 
 .nav_container {
     width: 220px;
-    position: fixed;
+    // position: fixed;
     top: 0;
     bottom: 0;
+    height: 100%;
     background-color: #fff;
-    padding-top: 82px;
+    // padding-top: 82px;
     ul {
-        border-top: 1px solid rgba(0, 0, 0, 0.0625);
+        // border-top: 1px solid rgba(0, 0, 0, 0.0625);
         margin: 0;
-        padding-top: 30px;
+        padding-top: 25px;
         padding-left: 0;
         // border-right: 1px solid rgba(0, 0, 0, 0.0625);
         li {
@@ -33,7 +34,7 @@
                 transition: all .3s ease;
                 color: #72777a;
                 display: block;
-                font-size: 15px;
+                font-size: 14px;
                 padding: 12px 25px;
             }
             .nav_icon {

@@ -3,15 +3,32 @@
 <app-table *ngIf="isVehicleDataReady" [tableData]="vehicleData" [tableColumns]="testTableColumns" (btnClicked)="tableBtnClicked($event)"></app-table>
 
 
-<app-modal [modalConfig]="modalOptions" [toggleModalVisibility]="showNavigationConfirmBox" >
+<app-modal [modalConfig]="vehicleOutModalOptions" [toggleModalVisibility]="showVehicleOutModal" >
     <ng-container class="modal-header">
-       <h4>Confirm Navigation</h4>
+       <h4>Parking Details</h4>
     </ng-container>
     <ng-container class="modal-body-content">
-       Are you sure you want to cancel the changes made?
+       <div>
+            <div class="form-group">
+                <label >license Number: </label>
+                <span>{{currentVehicleOutData.licenseNo}}</span>
+            </div>
+            <div class="form-group">
+                <label >Location Name: </label>
+                <span>{{currentVehicleOutData.locName}}</span>
+            </div>
+            <div class="form-group">
+                <label >Total Parking time: </label>
+                <span>{{currentVehicleOutData.parking_time}}</span>
+            </div>
+            <div class="form-group">
+                <label >Parking Charge: </label>
+                <span>{{currentVehicleOutData.parking_charge}}</span>
+            </div>
+       </div>
     </ng-container>
     <ng-container class="modal-footer-content">
-        <button class="saveBtn btn primary-btn pull-right" (click)="confirmAction()">Yes</button>
-        <button class="btn cancel-btn pull-right" (click)="discardAction()">No</button>
+        <button class="saveBtn btn primary-btn pull-right" (click)="confirmAction()">Print Receipt</button>
+        <button class="btn cancel-btn pull-right" (click)="cancelVehicleOutModal()">Cancel</button>
     </ng-container>
 </app-modal>
