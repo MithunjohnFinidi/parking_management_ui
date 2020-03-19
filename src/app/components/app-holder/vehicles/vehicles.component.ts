@@ -62,7 +62,7 @@ export class VehiclesComponent implements OnInit {
               return locationItem.locID === item['locID']
             })
             item['vehicleInDate'] = this.displayDateFormat(item['vehicleIn']);
-            item['vehicleOutDate'] = this.displayDateFormat(item['vehicleOut']);
+            item['vehicleOutDate'] = item['vehicleIn'] === item['vehicleOut'] ? '-' : this.displayDateFormat(item['vehicleOut']);
             item['vehicleStatus'] = item['vehicleStatus'] === 1 ? 'In' : 'Out';
             item['parkingCharge'] = '$' + item['parkingCharge'];
         })
