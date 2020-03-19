@@ -15,3 +15,58 @@
         <button class="btn cancel-btn pull-right" (click)="discardAction()">No</button>
     </ng-container>
 </app-modal>
+    <app-modal [modalConfig]="addBookingModalOptions" [toggleModalVisibility]="showAddBookingModal" >
+        <ng-container class="modal-header">
+           <h4>Add Booking</h4>
+        </ng-container>
+        <ng-container class="modal-body-content">
+            <form [formGroup]="addBookingForm">  
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                                <div class="form-group">
+                                        <label>Booking Time</label>
+                                        <input type="text" formControlName="booking" class="form-control" [ngClass]="{ 'is-invalid': addBookingFormSubmitted && f.booking.errors }" />
+                                        <div *ngIf="addBookingFormSubmitted && f.booking.errors" class="invalid-feedback">
+                                            <div *ngIf="f.booking.errors.required">Car Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lisence Number</label>
+                                        <input type="text" formControlName="licenseNumber" class="form-control" [ngClass]="{ 'is-invalid': addBookingFormSubmitted && f.licenseNumber.errors }" />
+                                        <div *ngIf="addBookingFormSubmitted && f.licenseNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.licenseNumber.errors.required">Company is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <input type="text" formControlName="personName" class="form-control" [ngClass]="{ 'is-invalid': addBookingFormSubmitted && f.personName.errors }" />
+                                        <div *ngIf="addBookingFormSubmitted && f.personName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.personName.errors.required">Year Of Manufacture is required</div>
+                                        </div>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+        <ng-container class="modal-footer-content">
+            <button class="saveBtn btn btn-primary pull-right" (click)="confirmAddBooking()">Add Booking</button>
+            <button class="btn cancel-btn pull-right" (click)="discardAddBooking()">Cancel</button>
+        </ng-container>
+    </app-modal>
+    
+    
+    <app-modal [modalConfig]="deleteBookingModalOptions" [toggleModalVisibility]="showDeleteModal" >
+        <ng-container class="modal-header">
+           <h4>Delete Booking</h4>
+        </ng-container>
+        <ng-container class="modal-body-content">
+           Are you sure you want to Delete the Booking?
+        </ng-container>
+        <ng-container class="modal-footer-content">
+            <button class="saveBtn btn primary-btn pull-right" (click)="confirmDeleteBooking()">Yes</button>
+            <button class="btn cancel-btn pull-right" (click)="discardDeleteBooking()">No</button>
+        </ng-container>
+</app-modal>

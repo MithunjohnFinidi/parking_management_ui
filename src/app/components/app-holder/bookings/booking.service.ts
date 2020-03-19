@@ -26,4 +26,13 @@ export class BookingService {
           });
       })
   }
+  addBooking(bookingObj):Promise<any> {
+    return new Promise(resolve => {
+        this.apiService.post('/bookings/create-booking', bookingObj).then(response => {
+            resolve(response);
+        }).catch(error=>{
+            console.log(error);
+        });
+    })
+}
 }
