@@ -1,5 +1,5 @@
 
-<button class="addBtn">Add Booking</button>
+<button class="addBtn" (click)="openAddBookingModal()">Add Booking</button>
 <app-table *ngIf="isBookingDataReady" [tableData]="bookingData" [tableColumns]="testTableColumns" (btnClicked)="tableBtnClicked($event)"></app-table>
 
 
@@ -15,7 +15,7 @@
         <button class="btn cancel-btn pull-right" (click)="discardAction()">No</button>
     </ng-container>
 </app-modal>
-    <app-modal [modalConfig]="addBookingModalOptions" [toggleModalVisibility]="showAddBookingModal" >
+    <app-modal [modalConfig]="addBookingModalOptions" [toggleModalVisibility]="showAddBokingModal" >
         <ng-container class="modal-header">
            <h4>Add Booking</h4>
         </ng-container>

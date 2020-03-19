@@ -114,12 +114,12 @@ export class BookingsComponent implements OnInit {
   }
   get f() { return this.addBookingForm.controls; }
 
-  openAddLOcationModal() {
+  openAddBookingModal() {
       this.addBookingForm.reset();
       this.showAddBokingModal = true;
   }
 
-  discardAddLocation() {
+  discardAddBooking() {
       this.showAddBokingModal = false;
       this.addBookingFormSubmitted = false;
   }

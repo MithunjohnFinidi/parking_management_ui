@@ -65,7 +65,7 @@ export class VehiclesComponent implements OnInit {
       },
       
       {
-        header:"Coming data",
+        header:"Coming date",
         field:"vehicleInDate"
       },
       {
