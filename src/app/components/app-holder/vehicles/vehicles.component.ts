@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from './vehicle.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vehicles',
@@ -15,21 +16,47 @@ export class VehiclesComponent implements OnInit {
   showNavigationConfirmBox: Boolean;
   showVehicleOutModal: boolean;
   currentVehicleOutData: object;
+  addVehicleModalOptions: object;
+  showVehicleInModal: boolean;
+  addVehicleForm: FormGroup;
+  locationsData: Array<object>;
+  addVehicleFormSubmitted: boolean;
 
   constructor(private vehicleService: VehicleService) { 
     this.isVehicleDataReady = false;
     this.showVehicleOutModal = false;
+    this.showVehicleInModal = false;
+    this.addVehicleFormSubmitted = false;
     this.currentVehicleOutData = {}
     this.vehicleOutModalOptions = {
         modalId: 'vehicle-out-modal',
         modalClass: 'confirmation-modal',
         hideRejectBtn: true
     }
+
+    this.addVehicleModalOptions = {
+      modalId: 'vehicle-in-modal',
+      modalClass: 'confirmation-modal',
+      hideRejectBtn: true
+    }
   }
   ngOnInit() {
+
+    
+
+
+    this.addVehicleForm = new FormGroup({
+      licenseNo: new FormControl('', Validators.required),
+      locID: new FormControl ('', Validators.required),
+      model: new FormControl('', Validators.required),
+      ownerName: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required)
+    });
+
     this.vehicleService.getData('/vehicles').then( (response) => {
       this.vehicleService.getData('/locations').then( (locationsArray) => {
         this.vehicleData = response;
+        this.locationsData = locationsArray;
         this.vehicleData.map( (item) => {
             item['locDetails'] = locationsArray.find( (locationItem) => {
               return locationItem.locID === item['locID']
@@ -46,7 +73,6 @@ export class VehiclesComponent implements OnInit {
             }
           }).locName
       })
-        debugger
         this.isVehicleDataReady = true;
       })
     });
@@ -109,7 +135,6 @@ export class VehiclesComponent implements OnInit {
     this.showNavigationConfirmBox = true;
     if(tableItem.btnConfig.action === 'edit') {
       this.vehicleService.getVehicle('http://localhost:3000/vehicles/' + tableItem.clickedItem.locID ).then( (response) => {
-        debugger
       })
     } else if (tableItem.btnConfig.action === 'vehicleOut') {
       
@@ -120,7 +145,6 @@ export class VehiclesComponent implements OnInit {
         'parking_time': timeDiff +'hours',
         'parking_charge': timeDiff * tableItem.clickedItem.locDetails.parkingCharge
       }
-      debugger
       this.showVehicleOutModal = true;
     }
     
@@ -129,5 +153,44 @@ export class VehiclesComponent implements OnInit {
   cancelVehicleOutModal() {
     this.showVehicleOutModal = false;
   }
+
+  openVehicleInModal() {
+    this.showVehicleInModal = true;
+  }
+
+  discardAddVehicle() {
+    this.showVehicleInModal = false;
+  }
+
+  confirmAddVehicle() {
+    this.addVehicleFormSubmitted = true;
+
+    // stop here if form is invalid
+    if (this.addVehicleForm.invalid) {
+        return;
+    }
+    let formValue = this.addVehicleForm.value;
+    let locationObj = {
+      licenseNo: formValue.licenseNo,
+      locID: parseInt(formValue.locID), 
+      model: formValue.model,
+      ownerName: formValue.ownerName,
+      color: formValue.color,
+      vehicleIn: new Date().toISOString(),
+      vehicleOut: new Date().toISOString(),
+      vehicleStatus: 1,
+      parkingCharge: 0
+    }
+    this.vehicleService.addVehicle(locationObj).then( () => {
+      this.showVehicleInModal = false;
+      // this.toastMessage = "Successfully Added"
+      //     this.showToast = true;
+      //     setTimeout( () => {
+      //       this.showToast = false;
+      //     }, 3000)
+    });
+  }
+
+  get f() { return this.addVehicleForm.controls; }
 
 }

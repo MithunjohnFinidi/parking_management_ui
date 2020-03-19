@@ -8,22 +8,33 @@ export class VehicleService {
 
   constructor(private apiService: ApiService) { }
 
-  getData(url):Promise<any> {
-      return new Promise(resolve => {
-          this.apiService.get(url).then(response => {
-              resolve(response);
-          }).catch(error=>{
-              console.log(error);
-          });
-      })
-  }
-  getVehicle(url):Promise<any> {
-    return new Promise(resolve => {
-        this.apiService.get(url).then(response => {
-            resolve(response);
-        }).catch(error=>{
-            console.log(error);
-        });
-    })
-}
+    getData(url):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.get(url).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    }
+
+    getVehicle(url):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.get(url).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    }
+
+    addVehicle(vehicleObj):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.post('/vehicles/create-vehicle', vehicleObj).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    } 
 }

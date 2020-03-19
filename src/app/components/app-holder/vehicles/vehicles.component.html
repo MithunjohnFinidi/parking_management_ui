@@ -1,5 +1,5 @@
 
-<button class="addBtn">Add Vehicle</button>
+<button class="addBtn" (click)="openVehicleInModal()">Add Vehicle</button>
 <app-table *ngIf="isVehicleDataReady" [tableData]="vehicleData" [tableColumns]="testTableColumns" (btnClicked)="tableBtnClicked($event)"></app-table>
 
 
@@ -30,5 +30,65 @@
     <ng-container class="modal-footer-content">
         <button class="saveBtn btn primary-btn pull-right" (click)="confirmAction()">Print Receipt</button>
         <button class="btn cancel-btn pull-right" (click)="cancelVehicleOutModal()">Cancel</button>
+    </ng-container>
+</app-modal>
+
+<app-modal [modalConfig]="addVehicleModalOptions" [toggleModalVisibility]="showVehicleInModal" >
+    <ng-container class="modal-header">
+       <h4>Vehicle In</h4>
+    </ng-container>
+    <ng-container class="modal-body-content">
+        <form [formGroup]="addVehicleForm">  
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ">
+                            <div class="form-group">
+                                    <label>License Number</label>
+                                    <input type="text" formControlName="licenseNo" class="form-control" [ngClass]="{ 'is-invalid': addVehicleFormSubmitted && f.licenseNo.errors }" />
+                                    <div *ngIf="addVehicleFormSubmitted && f.licenseNo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.licenseNo.errors.required">License number is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <select class="form-control borderStyle disable-field" formControlName="locID">
+                                        <option *ngFor="let location of locationsData" [value]="location.locID">{{location.locName}}</option>
+                                    </select>
+                                    <!-- <input type="text" formControlName="locID" class="form-control" [ngClass]="{ 'is-invalid': addVehicleFormSubmitted && f.locID.errors }" /> -->
+                                    <div *ngIf="addVehicleFormSubmitted && f.locID.errors" class="invalid-feedback">
+                                        <div *ngIf="f.locID.errors.required">Location is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Model</label>
+                                    <input type="text" formControlName="model" class="form-control" [ngClass]="{ 'is-invalid': addVehicleFormSubmitted && f.model.errors }" />
+                                    <div *ngIf="addVehicleFormSubmitted && f.model.errors" class="invalid-feedback">
+                                        <div *ngIf="f.model.errors.required">Car model is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Owner name</label>
+                                    <input type="text" formControlName="ownerName" class="form-control" [ngClass]="{ 'is-invalid': addVehicleFormSubmitted && f.ownerName.errors }" />
+                                    <div *ngIf="addVehicleFormSubmitted && f.ownerName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.ownerName.errors.required">Owner name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Color</label>
+                                    <input type="text" formControlName="color" class="form-control" [ngClass]="{ 'is-invalid': addVehicleFormSubmitted && f.color.errors }" />
+                                    <div *ngIf="addVehicleFormSubmitted && f.color.errors" class="invalid-feedback">
+                                        <div *ngIf="f.color.errors.required">Type is required</div>
+                                    </div>
+                                </div>
+                                
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </ng-container>
+    <ng-container class="modal-footer-content">
+        <button class="saveBtn btn btn-primary pull-right" (click)="confirmAddVehicle()">Add Location</button>
+        <button class="btn cancel-btn pull-right" (click)="discardAddVehicle()">Cancel</button>
     </ng-container>
 </app-modal>
