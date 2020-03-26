@@ -1,2 +1,13 @@
 <p>dashboard works!</p>
 <i class="fas fa-user"></i>
+
+<select [(ngModel)]="selectedDay" (ngModelChange)="dayChanged($event)">
+    <option *ngFor="let day of daysArray" [ngValue]="day">{{day}}</option>
+</select>
+
+
+<select [(ngModel)]="selectedLocation" (ngModelChange)="locationChanged($event)">
+    <option *ngFor="let location of locationsArray" [ngValue]="location">{{location.locName}}</option>
+</select>
+
+<app-bar-chart></app-bar-chart>

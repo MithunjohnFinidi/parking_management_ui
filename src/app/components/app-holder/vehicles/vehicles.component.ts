@@ -176,11 +176,12 @@ export class VehiclesComponent implements OnInit {
       model: formValue.model,
       ownerName: formValue.ownerName,
       color: formValue.color,
-      vehicleIn: new Date().toISOString(),
-      vehicleOut: new Date().toISOString(),
+      vehicleIn: new Date(),
+      vehicleOut: new Date(),
       vehicleStatus: 1,
       parkingCharge: 0
     }
+    debugger
     this.vehicleService.addVehicle(locationObj).then( () => {
       this.showVehicleInModal = false;
       // this.toastMessage = "Successfully Added"

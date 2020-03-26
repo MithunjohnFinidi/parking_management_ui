@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,6 +20,7 @@ import { HttpService } from './services/http.service';
 import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { ModalComponent } from './components/modal/modal.component';
 import { httpFactory } from './factory/http.factory';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +35,13 @@ import { httpFactory } from './factory/http.factory';
     PageNotFoundComponentComponent,
     TableComponent,
     ModalComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', component: DashboardComponent },
