@@ -10,4 +10,4 @@
     <option *ngFor="let location of locationsArray" [ngValue]="location">{{location.locName}}</option>
 </select>
 
-<app-bar-chart></app-bar-chart>
+<app-bar-chart [chartData]="statArray"></app-bar-chart>

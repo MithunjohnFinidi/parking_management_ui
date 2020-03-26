@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   selectedLocation: object;
   daysArray: Array<string>;
   selectedDay: string;
+  statArray: Array<object> = [];
 
   constructor(private dashboardService: DashboardService) { 
     this.daysArray = ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -18,7 +19,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.dashboardService.getData('/locations').then( (response) => {
-      debugger
       this.locationsArray = response;
       this.selectedDay = 'Monday';
       this.selectedLocation = response[0]
@@ -30,7 +30,25 @@ export class DashboardComponent implements OnInit {
 
   getStatistics() {
     this.dashboardService.getData( `/dashboard/statistics/${this.selectedDay}/${this.selectedLocation['locID']}`).then( (response) => {
-      debugger
+      this.statArray = [];
+      for(let i=0; i<24; i++) {
+        response.forEach( (item)=> {
+          if(item.time === i) {
+            this.statArray[i] = {
+              label: item.time,
+              value: item.count
+            };
+          } else {
+            if(!this.statArray[i]) {
+              this.statArray[i] = {
+                label: i,
+                value: 0
+              }
+            }
+          }
+        })
+      }
+      this.statArray = [...this.statArray]
     })
   }
 
