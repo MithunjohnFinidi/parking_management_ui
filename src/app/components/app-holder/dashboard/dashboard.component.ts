@@ -31,6 +31,11 @@ export class DashboardComponent implements OnInit {
   getStatistics() {
     this.dashboardService.getData( `/dashboard/statistics/${this.selectedDay}/${this.selectedLocation['locID']}`).then( (response) => {
       this.statArray = [];
+      response.map( (item) => {
+        let tempTime = new Date(item.time);
+        item.time = parseInt(tempTime.toLocaleTimeString().split(":")[0]);
+      })
+
       for(let i=0; i<24; i++) {
         response.forEach( (item)=> {
           if(item.time === i) {
