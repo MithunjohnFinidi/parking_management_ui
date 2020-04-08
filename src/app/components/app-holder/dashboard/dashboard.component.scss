@@ -1,0 +1,32 @@
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    color: #72777a;
+    letter-spacing: .2px;
+}
+
+.statistics {
+    width: 60%;
+}
+
+.percentage {
+    width: 40%;
+}
+
+.dashboard_chart_wrapper {
+    display: flex;
+}
+
+.card_header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.0625)!important;
+}
+
+.wrapper .filter select{
+    background-color: #e9ecef;
+    margin: 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}

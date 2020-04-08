@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   daysArray: Array<string>;
   selectedDay: string;
   statArray: Array<object> = [];
+  parkingPercentage: number;
 
   constructor(private dashboardService: DashboardService) { 
     this.daysArray = ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
       this.selectedDay = 'Monday';
       this.selectedLocation = response[0]
       this.getStatistics();
+      this.getPercentage();
     })
     
     
@@ -57,14 +59,23 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getPercentage() {
+    this.dashboardService.getData(`/dashboard/percentage/${this.selectedDay}/${this.selectedLocation['locID']}`).then( (response) => {
+      this.parkingPercentage = (response.count/this.selectedLocation['numOfSlots']) * 100;
+      debugger
+    })
+  }
+
   locationChanged(newLocation) {
     this.selectedLocation = newLocation;
     this.getStatistics();
+    this.getPercentage();
   }
 
   dayChanged(newDay) {
     this.selectedDay = newDay;
     this.getStatistics();
+    this.getPercentage();
   }
 
 }

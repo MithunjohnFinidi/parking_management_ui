@@ -21,6 +21,7 @@ import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { ModalComponent } from './components/modal/modal.component';
 import { httpFactory } from './factory/http.factory';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     TableComponent,
     ModalComponent,
     BarChartComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,

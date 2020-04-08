@@ -1,11 +1,37 @@
 
-<select [(ngModel)]="selectedDay" (ngModelChange)="dayChanged($event)">
-    <option *ngFor="let day of daysArray" [ngValue]="day">{{day}}</option>
-</select>
+<div class="wrapper">
+    <div class="filter">
+        <select [(ngModel)]="selectedDay" (ngModelChange)="dayChanged($event)">
+            <option *ngFor="let day of daysArray" [ngValue]="day">{{day}}</option>
+        </select>
+        
+        <select [(ngModel)]="selectedLocation" (ngModelChange)="locationChanged($event)">
+            <option *ngFor="let location of locationsArray" [ngValue]="location">{{location.locName}}</option>
+        </select>
+    </div>
+    
+    <div class="dashboard_chart_wrapper">
+        <div class="card statistics">
+            <div class="card_header">
+                Total Statistics
+            </div>
+            <div class="card_content">
+                <app-bar-chart [chartData]="statArray"></app-bar-chart>
+            </div>
+        </div>
+        
+        <div class="card percentage">
+            <div class="card_header">
+                Parking Percentage
+            </div>
+            <div class="card_content">
+                <app-pie-chart [chartData]="parkingPercentage"></app-pie-chart>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<select [(ngModel)]="selectedLocation" (ngModelChange)="locationChanged($event)">
-    <option *ngFor="let location of locationsArray" [ngValue]="location">{{location.locName}}</option>
-</select>
 
-<app-bar-chart [chartData]="statArray"></app-bar-chart>
+
+
