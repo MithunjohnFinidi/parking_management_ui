@@ -90,6 +90,10 @@ export class BarChartComponent implements OnInit {
               xAxes: [{
                 gridLines: {
                     display:false
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time'
                 }
               }],
               yAxes: [{
@@ -98,7 +102,11 @@ export class BarChartComponent implements OnInit {
                   },
                   gridLines: {
                     display:false
-                  } 
+                  } ,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Count'
+                  }
               }]
           }
           
