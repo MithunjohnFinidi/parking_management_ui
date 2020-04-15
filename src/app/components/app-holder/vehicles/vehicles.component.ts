@@ -37,7 +37,12 @@ export class VehiclesComponent implements OnInit {
     this.showVehicleOutModal = false;
     this.showVehicleInModal = false;
     this.addVehicleFormSubmitted = false;
-    // this.currentVehicleOutData = {}
+    this.currentVehicleOutData = {
+      licenseNo: 0,
+      locName: "",
+      parking_time: "",
+      parking_charge: 0
+    }
     this.vehicleOutModalOptions = {
         modalId: 'vehicle-out-modal',
         modalClass: 'confirmation-modal',
