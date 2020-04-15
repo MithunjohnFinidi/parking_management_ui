@@ -25,7 +25,7 @@ export class VehiclesComponent implements OnInit {
   vehicleOutModalOptions: object;
   showNavigationConfirmBox: Boolean;
   showVehicleOutModal: boolean;
-  currentVehicleOutData: object;
+  currentVehicleOutData: CurrentVehicleOutData;
   addVehicleModalOptions: object;
   showVehicleInModal: boolean;
   addVehicleForm: FormGroup;
