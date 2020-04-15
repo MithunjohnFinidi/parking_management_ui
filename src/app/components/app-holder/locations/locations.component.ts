@@ -34,7 +34,7 @@ export class LocationsComponent implements OnInit {
     }
 
     this.addLocationModalOptions = {
-      modalId: 'add-location-modal',
+      modalId: 'add_location_modal',
       modalClass: 'confirmation-modal',
       hideRejectBtn: true
     }
@@ -149,6 +149,7 @@ export class LocationsComponent implements OnInit {
   get f() { return this.addLocationForm.controls; }
 
   openAddLOcationModal() {
+    debugger
       this.addLocationForm.reset();
       this.showAddLocationModal = true;
   }
@@ -194,7 +195,7 @@ export class LocationsComponent implements OnInit {
   }
 
   discardAction() {
-    
+
   }
 
 }

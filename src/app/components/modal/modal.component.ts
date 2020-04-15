@@ -21,6 +21,7 @@ export class ModalComponent implements OnInit {
     constructor(private elementRef: ElementRef) {
     }
     ngOnChanges(changes: SimpleChanges) {
+        debugger
         if (changes['toggleModalVisibility'] && !changes['toggleModalVisibility'].currentValue) {
             this.hideModal();
         }
@@ -47,6 +48,7 @@ export class ModalComponent implements OnInit {
         this.modalCancelClicked.emit(true);
     }
     showModal() {
+        debugger
         $('#' + this.modalConfig.modalId).modal('show');
     }
     hideModal() {
