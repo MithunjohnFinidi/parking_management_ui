@@ -17,7 +17,7 @@ export class InterceptedHttp extends Http {
         else if(url['url'].endsWith('.json')) {
             return super.request(url, options);
         } else {
-            url['url'] = environment.apiUrl + url['url'];
+            url['url'] = environment['apiUrl'] + url['url'];
             return super.request(url);
             // return super.request(url, options);
             // url['url'] = process.env.NODE_ENV === 'production' ? process.env.PROD_APIURL + url['url'] : process.env.DEV_APIURL + url['url']
