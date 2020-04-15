@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { VehicleService } from './vehicle.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
+interface CurrentVehicleOutData {
+  licenseNo: number,
+  locName: string,
+  parking_time: string,
+  parking_charge: string
+}
+
 @Component({
   selector: 'app-vehicles',
   templateUrl: './vehicles.component.html',
   styleUrls: ['./vehicles.component.scss']
 })
 
-interface CurrentVehicleOutData {
-    licenseNo: number,
-    locName: string,
-    parking_time: string,
-    parking_charge: string
-}
+
 export class VehiclesComponent implements OnInit {
 
   testTableColumns: Array<object>;
