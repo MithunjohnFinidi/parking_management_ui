@@ -7,7 +7,7 @@ interface CurrentVehicleOutData {
   licenseNo: number,
   locName: string,
   parking_time: string,
-  parking_charge: string
+  parking_charge: number
 }
 
 @Component({
@@ -37,7 +37,7 @@ export class VehiclesComponent implements OnInit {
     this.showVehicleOutModal = false;
     this.showVehicleInModal = false;
     this.addVehicleFormSubmitted = false;
-    this.currentVehicleOutData = {}
+    // this.currentVehicleOutData = {}
     this.vehicleOutModalOptions = {
         modalId: 'vehicle-out-modal',
         modalClass: 'confirmation-modal',
