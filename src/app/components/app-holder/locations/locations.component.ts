@@ -189,4 +189,12 @@ export class LocationsComponent implements OnInit {
     this.showDeleteModal = false;
   }
 
+  confirmAction() {
+
+  }
+
+  discardAction() {
+    
+  }
+
 }

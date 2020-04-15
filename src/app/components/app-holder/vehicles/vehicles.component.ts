@@ -194,4 +194,12 @@ export class VehiclesComponent implements OnInit {
 
   get f() { return this.addVehicleForm.controls; }
 
+  confirmAction() {
+
+  }
+
+  discardAction() {
+    
+  }
+
 }
