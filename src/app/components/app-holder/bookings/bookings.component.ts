@@ -132,5 +132,13 @@ export class BookingsComponent implements OnInit {
     
   }
 
+  confirmAction() {
+
+  }
+
+  discardAction() {
+    
+  }
+
 }
 
