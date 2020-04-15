@@ -7,6 +7,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './vehicles.component.html',
   styleUrls: ['./vehicles.component.scss']
 })
+
+interface CurrentVehicleOutData {
+    licenseNo: number,
+    locName: string,
+    parking_time: string,
+    parking_charge: string
+}
 export class VehiclesComponent implements OnInit {
 
   testTableColumns: Array<object>;
@@ -199,7 +206,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   discardAction() {
-    
+
   }
 
 }
