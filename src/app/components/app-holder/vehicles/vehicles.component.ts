@@ -196,7 +196,6 @@ export class VehiclesComponent implements OnInit {
       vehicleStatus: 1,
       parkingCharge: 0
     }
-    debugger
     this.vehicleService.addVehicle(locationObj).then( () => {
       this.showVehicleInModal = false;
       // this.toastMessage = "Successfully Added"

@@ -62,7 +62,6 @@ export class DashboardComponent implements OnInit {
   getPercentage() {
     this.dashboardService.getData(`/dashboard/percentage/${this.selectedDay}/${this.selectedLocation['locID']}`).then( (response) => {
       this.parkingPercentage = (response.count/this.selectedLocation['numOfSlots']) * 100;
-      debugger
     })
   }
 

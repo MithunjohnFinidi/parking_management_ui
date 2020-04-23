@@ -128,7 +128,6 @@ export class LocationsComponent implements OnInit {
     // this.showNavigationConfirmBox = true;
     if(tableItem.btnConfig.action === 'edit') {
       this.locationsService.getALocation('/locations/' + tableItem.clickedItem.locID ).then( (response) => {
-        debugger
         this.updateFormValues('locName', response.locName);
         this.updateFormValues('locDesc', response.locDesc);
         this.updateFormValues('numOfSlots', response.numOfSlots);
@@ -149,7 +148,6 @@ export class LocationsComponent implements OnInit {
   get f() { return this.addLocationForm.controls; }
 
   openAddLOcationModal() {
-    debugger
       this.addLocationForm.reset();
       this.showAddLocationModal = true;
   }
@@ -160,7 +158,6 @@ export class LocationsComponent implements OnInit {
   }
 
   confirmAddLocation() {
-    debugger
     this.addLocationFormSubmitted = true;
 
     // stop here if form is invalid

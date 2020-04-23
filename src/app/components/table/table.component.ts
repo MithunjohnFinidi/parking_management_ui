@@ -17,7 +17,6 @@ export class TableComponent implements OnInit {
   }
 
   buttonClicked(btnConfig, clickedItem) {
-    debugger
     this.btnClicked.emit( {
       btnConfig,
       clickedItem

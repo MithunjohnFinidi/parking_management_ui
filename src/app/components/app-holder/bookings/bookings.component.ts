@@ -123,7 +123,6 @@ export class BookingsComponent implements OnInit {
     this.showNavigationConfirmBox = true;
     if(tableItem.btnConfig.action === 'edit') {
       this.bookingService.getBooking('http://localhost:3000/bookings/' + tableItem.clickedItem.locID ).then( (response) => {
-        debugger
       })
     } else if (tableItem.btnConfig.action === 'delete') {
       
