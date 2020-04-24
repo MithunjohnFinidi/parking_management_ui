@@ -37,4 +37,14 @@ export class LocationsService {
             });
         })
     }
+
+    editLOcation(locationObj, locationToModify):Promise<any> {
+        return new Promise(resolve => {
+            this.apiService.put(`/locations/update-location/${locationToModify}`, locationObj).then(response => {
+                resolve(response);
+            }).catch(error=>{
+                console.log(error);
+            });
+        })
+    }
 }

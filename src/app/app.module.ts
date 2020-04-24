@@ -22,6 +22,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { httpFactory } from './factory/http.factory';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     ModalComponent,
     BarChartComponent,
     PieChartComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

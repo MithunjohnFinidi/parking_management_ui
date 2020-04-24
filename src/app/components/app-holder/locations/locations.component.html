@@ -128,7 +128,9 @@
         </form>
     </ng-container>
     <ng-container class="modal-footer-content">
-        <button class="saveBtn btn btn-primary pull-right" (click)="confirmAddLocation()">Add Location</button>
+        <button *ngIf="editLocation" class="saveBtn btn btn-primary pull-right" (click)="confirmAddLocation()">Edit Location</button>
+        
+        <button *ngIf="!editLocation" class="saveBtn btn btn-primary pull-right" (click)="confirmAddLocation()">Add Location</button>
         <button class="btn cancel-btn pull-right" (click)="discardAddLocation()">Cancel</button>
     </ng-container>
 </app-modal>
@@ -146,3 +148,5 @@
         <button class="btn cancel-btn pull-right" (click)="discardDeleteLocation()">No</button>
     </ng-container>
 </app-modal>
+
+<app-toast [showToast]="showToast" [toastMessage]="toastMessage"></app-toast>

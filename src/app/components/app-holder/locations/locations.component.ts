@@ -21,12 +21,17 @@ export class LocationsComponent implements OnInit {
   addLocationFormSubmitted: Boolean;
   showDeleteModal: Boolean;
   deleteLocationModalOptions: object;
+  editLocation: boolean;
+  locationToModify: number;
+  toastMessage: string;
+  showToast: boolean;
 
   constructor(private locationsService: LocationsService) { 
     this.isLocationDataReady = false;
     this.showAddLocationModal = false;
     this.addLocationFormSubmitted = false;
     this.showDeleteModal = false;
+    this.editLocation = false;
     this.modalOptions = {
         modalId: 'confirmation-modal',
         modalClass: 'confirmation-modal',
@@ -47,10 +52,12 @@ export class LocationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.locationsService.getData('/locations').then( (response) => {
-      this.locationsData = response;
-      this.isLocationDataReady = true;
-    });
+    // this.locationsService.getData('/locations').then( (response) => {
+    //   this.locationsData = response;
+    //   this.isLocationDataReady = true;
+    // });
+
+    this.getAllLocations();
 
     this.addLocationForm = new FormGroup({
       locName: new FormControl('', Validators.required),
@@ -124,8 +131,16 @@ export class LocationsComponent implements OnInit {
     ]
   }
 
+  getAllLocations() {
+    this.locationsService.getData('/locations').then( (response) => {
+      this.locationsData = response;
+      this.isLocationDataReady = true;
+    });
+  }
+
   tableBtnClicked(tableItem) {
     // this.showNavigationConfirmBox = true;
+    this.locationToModify = tableItem.clickedItem.locID;
     if(tableItem.btnConfig.action === 'edit') {
       this.locationsService.getALocation('/locations/' + tableItem.clickedItem.locID ).then( (response) => {
         this.updateFormValues('locName', response.locName);
@@ -139,6 +154,7 @@ export class LocationsComponent implements OnInit {
         this.updateFormValues('parkingCharge', response.parkingCharge);
 
         this.showAddLocationModal = true;
+        this.editLocation = true;
       })
     } else if (tableItem.btnConfig.action === 'delete') {
       this.showDeleteModal = true;
@@ -150,11 +166,13 @@ export class LocationsComponent implements OnInit {
   openAddLOcationModal() {
       this.addLocationForm.reset();
       this.showAddLocationModal = true;
+      this.editLocation = false;
   }
 
   discardAddLocation() {
       this.showAddLocationModal = false;
       this.addLocationFormSubmitted = false;
+      this.editLocation = false;
   }
 
   confirmAddLocation() {
@@ -164,14 +182,27 @@ export class LocationsComponent implements OnInit {
     if (this.addLocationForm.invalid) {
         return;
     }
-    this.locationsService.addLOcation(this.addLocationForm.value).then( () => {
-      this.showAddLocationModal = false;
-      // this.toastMessage = "Successfully Added"
-      //     this.showToast = true;
-      //     setTimeout( () => {
-      //       this.showToast = false;
-      //     }, 3000)
-    });
+    if(this.editLocation) {
+      this.locationsService.editLOcation(this.addLocationForm.value, this.locationToModify).then( () => {
+        this.showAddLocationModal = false;
+        this.getAllLocations();
+        this.toastMessage = "Successfully Edited"
+            this.showToast = true;
+            setTimeout( () => {
+              this.showToast = false;
+            }, 3000)
+      })
+    } else {
+      this.locationsService.addLOcation(this.addLocationForm.value).then( () => {
+        this.showAddLocationModal = false;
+        this.getAllLocations();
+        this.toastMessage = "Successfully Added"
+            this.showToast = true;
+            setTimeout( () => {
+              this.showToast = false;
+            }, 3000)
+      });
+    }
   }
 
   updateFormValues(controlName: string, value) {

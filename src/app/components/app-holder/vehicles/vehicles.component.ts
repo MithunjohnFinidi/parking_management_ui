@@ -132,7 +132,7 @@ export class VehiclesComponent implements OnInit {
           },
           {
             label: 'Delete',
-            icon: 'fas fa-trash',
+            icon: 'fas fa-sign-out-alt', 
             customClass: 'deleteBtn',
             action: 'vehicleOut'
           }
