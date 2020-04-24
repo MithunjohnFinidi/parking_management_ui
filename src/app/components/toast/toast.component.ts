@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-toast',
